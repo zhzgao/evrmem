@@ -1,0 +1,13 @@
+# QMD Vector Memory System
+# QMD 向量记忆系统依赖
+
+# 核心依赖
+chromadb>=0.4.0
+sentence-transformers>=2.2.0
+
+# 配置解析
+pyyaml>=6.0
+
+# 可选依赖（用于增强功能）
+# gradio>=3.0  # Web UI 界面
+# rich>=13.0   # 富文本输出

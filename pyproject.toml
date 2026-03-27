@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "evrmem"
+version = "0.0.1"
+description = "QMD - 本地化 AI 向量记忆系统"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "Pink"}
+]
+requires-python = ">=3.9"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "chromadb>=0.4.0",
+    "sentence-transformers>=2.2.0",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black>=24.0.0",
+    "isort>=5.12.0",
+    "mypy>=1.0.0",
+    "pytest>=7.0.0",
+]
+
+[project.scripts]
+evrmem = "qmd.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/pink/evrmem"
+Repository = "https://github.com/pink/evrmem"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["qmd*"]
+
+[tool.setuptools.package-data]
+qmd = ["py.typed"]
