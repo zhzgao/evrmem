@@ -42,8 +42,9 @@ dev = [
 evrmem = "qmd.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/pink/evrmem"
-Repository = "https://github.com/pink/evrmem"
+Homepage = "https://github.com/zhzgao/evrmem"
+Repository = "https://github.com/zhzgao/evrmem"
+Documentation = "https://zhzgao.github.io/evrmem"
 
 [tool.setuptools.packages.find]
 where = ["src"]
