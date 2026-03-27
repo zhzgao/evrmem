@@ -84,3 +84,6 @@ models/
 *.sqlite
 *.sqlite3
 chroma/
+
+# MkDocs site output
+site/

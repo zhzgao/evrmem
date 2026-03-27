@@ -2,9 +2,19 @@
 
 > QMD - 本地化 AI 向量记忆系统 / Fully Local AI Vector Memory System
 
+[![GitHub stars](https://img.shields.io/github/stars/zhzgao/evrmem?style=social)](https://github.com/zhzgao/evrmem/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/zhzgao/evrmem?style=social)](https://github.com/zhzgao/evrmem/network/members)
 [![PyPI version](https://img.shields.io/pypi/v/evrmem?color=blue)](https://pypi.org/project/evrmem/)
 [![Python](https://img.shields.io/badge/python-3.9+-green.svg)](https://www.python.org/)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![GitHub Actions Status](https://img.shields.io/github/actions/workflow/status/zhzgao/evrmem/deploy-pages.yml)](https://github.com/zhzgao/evrmem/actions)
+[![Docs](https://img.shields.io/badge/docs-GitHub%20Pages-blue)](https://zhzgao.github.io/evrmem)
+[![Offline](https://img.shields.io/badge/100%25-Offline-green)](https://github.com/zhzgao/evrmem)
+[![Chinese](https://img.shields.io/badge/中文-优化-orange)](https://github.com/zhzgao/evrmem)
+
+---
+
+📖 **在线文档**: https://zhzgao.github.io/evrmem
 
 ---
 

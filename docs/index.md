@@ -1,35 +1,54 @@
-# Documentation / 文档导航
+# evrmem
 
-## User Guide / 用户文档
+> QMD - 本地化 AI 向量记忆系统，100% 离线运行
 
-- [README](../README.md) — 完整说明（中英双语）
-- [快速开始](../README.md#快速开始) — 5 分钟上手
+![GitHub stars](https://img.shields.io/github/stars/zhzgao/evrmem)
+![License](https://img.shields.io/badge/license-MIT-blue)
 
-## Developer Guide / 开发者文档
+**evrmem** 是一个完全本地化的 AI 向量记忆系统，专为开发者和 AI 智能体设计。通过语义向量搜索存储、检索和推理个人知识——无需云服务、无需 API Key、100% 离线运行。
 
-- [DEVELOPMENT.md](./DEVELOPMENT.md) — 源码架构、离线模式原理、添加新命令指南
+## 特性
 
-## Project Management / 项目管理
+- :mag: **语义搜索** — 自然语言查询，中文语义优先
+- :card_file_box: **结构化查询** — 按项目、日期、标签等维度筛选
+- :robot: **RAG 增强** — 生成带上下文的 LLM 提示词
+- :wifi_off: **100% 离线** — 模型缓存后无需网络
+- :keyboard: **单命令 CLI** — `evrmem add / search / rag / query / stats`
+- :snake: **Python API** — 嵌入任意 Python 项目
 
-- [CONTRIBUTING.md](../CONTRIBUTING.md) — 贡献指南
-- [CHANGELOG.md](../CHANGELOG.md) — 更新日志
+## 快速开始
 
----
+```bash
+# 安装
+pip install -e .
 
-## 文档索引
+# 添加记忆
+evrmem add "React StrictMode 导致 Form.useForm 警告" -p mes-demo -t react,antd
 
-| 文档 | 内容 |
-|------|------|
-| `README.md` | 功能介绍、安装、使用方法、CLI 参考、Python API |
-| `DEVELOPMENT.md` | 源码架构、核心组件解析、离线模式原理、开发指南 |
-| `CONTRIBUTING.md` | 贡献流程、代码风格、提交规范 |
-| `CHANGELOG.md` | 版本历史、功能列表 |
+# 语义搜索
+evrmem search "React 表单警告修复"
 
----
+# RAG 检索
+evrmem rag "如何修复表单警告" --prompt
+```
 
-## Quick Links / 快速链接
+## 技术栈
 
-- [GitHub Repository](https://github.com/pink/evrmem)
-- [PyPI Package](https://pypi.org/project/evrmem/)
-- [HuggingFace Model](https://huggingface.co/shibing624/text2vec-base-chinese)
-- [ChromaDB](https://www.trychroma.com/)
+- [ChromaDB](https://www.trychroma.com/) — 向量数据库
+- [text2vec-base-chinese](https://huggingface.co/shibing624/text2vec-base-chinese) — 中文语义 Embedding 模型
+
+## 文档导航
+
+- [安装指南](install.md) — 完整安装说明
+- [快速开始](quickstart.md) — 5 分钟上手教程
+- [CLI 命令](cli.md) — 命令行工具完整参考
+- [Python API](api.md) — Python 接口文档
+- [配置指南](config.md) — 配置文件和环境变量
+- [开发指南](development.md) — 源码架构和开发指南
+
+## 相关链接
+
+- [GitHub 仓库](https://github.com/zhzgao/evrmem)
+- [GitHub Pages 文档](https://zhzgao.github.io/evrmem)
+- [PyPI 包](https://pypi.org/project/evrmem/)
+
