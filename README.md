@@ -5,6 +5,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/zhzgao/evrmem?style=social)](https://github.com/zhzgao/evrmem/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/zhzgao/evrmem?style=social)](https://github.com/zhzgao/evrmem/network/members)
 [![PyPI version](https://img.shields.io/pypi/v/evrmem?color=blue)](https://pypi.org/project/evrmem/)
+[![PyPI downloads](https://img.shields.io/pypi/dm/evrmem?color=green)](https://pypi.org/project/evrmem/)
 [![Python](https://img.shields.io/badge/python-3.9+-green.svg)](https://www.python.org/)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![GitHub Actions Status](https://img.shields.io/github/actions/workflow/status/zhzgao/evrmem/deploy-pages.yml)](https://github.com/zhzgao/evrmem/actions)
@@ -59,7 +60,7 @@ evrmem query --project mes-demo
 
 ### Installation
 
-#### Option A: pip install (recommended when published)
+#### Option A: pip install (recommended)
 
 ```bash
 pip install evrmem
@@ -68,7 +69,7 @@ pip install evrmem
 #### Option B: Install from source
 
 ```bash
-git clone https://github.com/pink/evrmem.git
+git clone https://github.com/zhzgao/evrmem.git
 cd evrmem
 pip install -e .
 ```
@@ -238,7 +239,7 @@ evrmem query --project mes-demo
 
 ### 安装
 
-#### 方式 A：pip 安装（发布后推荐）
+#### 方式 A：pip 安装（推荐）
 
 ```bash
 pip install evrmem
@@ -247,7 +248,7 @@ pip install evrmem
 #### 方式 B：从源码安装
 
 ```bash
-git clone https://github.com/pink/evrmem.git
+git clone https://github.com/zhzgao/evrmem.git
 cd evrmem
 pip install -e .
 ```
