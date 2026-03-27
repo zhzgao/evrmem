@@ -46,8 +46,8 @@ nav:
   - CLI 命令: cli.md
   - Python API: api.md
   - 配置: config.md
-  - 开发指南: development.md
-  - 更新日志: changelog.md
+  - 开发指南: DEVELOPMENT.md
+  - 更新日志: CHANGELOG.md
 
 markdown_extensions:
   - pymdownx.highlight:

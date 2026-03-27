@@ -44,7 +44,7 @@ evrmem rag "如何修复表单警告" --prompt
 - [CLI 命令](cli.md) — 命令行工具完整参考
 - [Python API](api.md) — Python 接口文档
 - [配置指南](config.md) — 配置文件和环境变量
-- [开发指南](development.md) — 源码架构和开发指南
+- [开发指南](DEVELOPMENT.md) — 源码架构和开发指南
 
 ## 相关链接
 
