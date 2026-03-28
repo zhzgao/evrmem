@@ -8,6 +8,7 @@
 | `evrmem search` | 语义搜索 |
 | `evrmem rag` | RAG 检索 |
 | `evrmem query` | 结构化查询 |
+| `evrmem delete` | 删除记忆 |
 | `evrmem stats` | 查看统计 |
 | `evrmem init` | 初始化系统 |
 
@@ -26,8 +27,8 @@ evrmem add "记忆内容" [选项]
 | `--project` | `-p` | 关联项目名 | `-p mes-demo` |
 | `--tags` | `-t` | 标签（逗号分隔） | `-t react,antd` |
 | `--date` | `-d` | 日期 (YYYY-MM-DD) | `-d 2026-03-27` |
-| `--type` | `-y` | 记忆类型 | `-y bugfix` |
-| `--file` | `-f` | 来源文件路径 | `-f ./note.md` |
+| `--file` | `-f` | 从文件读取内容 | `-f ./note.md` |
+| `--list` | `-l` | 从文本文件批量导入（每行一条） | `-l ./memories.txt` |
 
 **示例**：
 
@@ -36,10 +37,13 @@ evrmem add "记忆内容" [选项]
 evrmem add "React StrictMode 导致 Form.useForm 警告"
 
 # 带元数据
-evrmem add "修复了 Modal.confirm 警告" -p mes-demo -t antd,react -y bugfix
+evrmem add "修复了 Modal.confirm 警告" -p mes-demo -t antd,react
 
 # 从文件导入
-evrmem add "API 规范文档" -f ./API规范.md
+evrmem add -f ./API规范.md
+
+# 批量导入（每行一条记忆）
+evrmem add -l ./memories.txt
 ```
 
 ## evrmem search
@@ -55,9 +59,8 @@ evrmem search "查询内容" [选项]
 | 参数 | 简写 | 说明 | 默认值 |
 |------|------|------|--------|
 | `--top-k` | `-k` | 返回条数 | 5 |
-| `--min-similarity` | `-s` | 最小相似度 | 0.5 |
-| `--verbose` | `-v` | 详细输出 | false |
-| `--project` | `-p` | 限定项目 | - |
+| `--min-similarity` | `-s` | 最小相似度（余弦，范围 -1 ~ 1） | 0.0 |
+| `--verbose` | `-v` | 详细输出（显示项目/标签/日期） | false |
 
 **示例**：
 
@@ -65,11 +68,11 @@ evrmem search "查询内容" [选项]
 # 基本搜索
 evrmem search "React 表单警告"
 
-# 精确搜索
+# 精确搜索，显示详细信息
 evrmem search "Modal.confirm" -k 3 -v
 
-# 限定项目
-evrmem search "bug" -p mes-demo
+# 交互模式（不传 query 直接回车）
+evrmem search
 ```
 
 ## evrmem rag
@@ -135,6 +138,31 @@ evrmem query --project mes-demo --tag antd
 
 # 列出所有项目
 evrmem query --list-projects
+```
+
+## evrmem delete
+
+删除指定 ID 的记忆，删除前会显示预览并请求确认。
+
+```bash
+evrmem delete <ID>
+```
+
+**参数**：
+
+| 参数 | 说明 |
+|------|------|
+| `<ID>` | 记忆 ID（通过 `evrmem search -v` 或 `evrmem query` 获取）|
+| `-y` / `--yes` | 跳过确认提示，直接删除 |
+
+**示例**：
+
+```bash
+# 交互式删除（会显示内容预览并请求确认）
+evrmem delete a1b2c3d4-...
+
+# 非交互式删除（用于脚本）
+evrmem delete a1b2c3d4-... --yes
 ```
 
 ## evrmem stats

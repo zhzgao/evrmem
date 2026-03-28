@@ -54,13 +54,13 @@ class EmbeddingModel:
         # 确定模型路径（优先用 cache_folder + 自动解析，确保传给 ST 的是实际 snapshot 目录）
         if self.local_path:
             model_path = self.local_path
-            print(f"  [Embedding] 加载本地模型: {model_path}")
+            print(f"  ⏳ 加载本地模型: {model_path}", flush=True)
         elif self.cache_folder:
             model_path = self._resolve_local_model()
-            print(f"  [Embedding] 加载模型: {model_path}")
+            print(f"  ⏳ 加载向量模型（首次约需 5~10 秒，请稍候）...", flush=True)
         else:
             model_path = self.model_name
-            print(f"  [Embedding] 加载模型: {model_path}")
+            print(f"  ⏳ 加载向量模型: {model_path}（首次约需 5~10 秒）...", flush=True)
 
         self._model = SentenceTransformer(
             model_path,
@@ -69,7 +69,7 @@ class EmbeddingModel:
             local_files_only=True,
         )
         self._dimension = self._model.get_sentence_embedding_dimension()
-        print(f"  [Embedding] 模型加载完成，向量维度: {self._dimension}")
+        print(f"  ✅ 模型加载完成（维度: {self._dimension}）", flush=True)
 
     def _resolve_local_model(self) -> str:
         """

@@ -51,8 +51,14 @@ class VectorDB:
         )
 
         # 获取或创建记忆集合
+        # 使用余弦距离：向量已归一化（normalize_embeddings=True），余弦距离 ∈ [0, 2]
+        # similarity = 1 - cosine_distance，∈ [-1, 1]，值越大越相关
         self._collection = self._client.get_or_create_collection(
-            name="memory", metadata={"description": "QMD Vector Memory Store"}
+            name="memory",
+            metadata={
+                "description": "QMD Vector Memory Store",
+                "hnsw:space": "cosine",  # 使用余弦距离，比 L2 更适合归一化向量
+            },
         )
 
         logger.info(f"向量数据库初始化完成，集合大小: {self._collection.count()}")
@@ -117,6 +123,8 @@ class VectorDB:
         if results["ids"] and len(results["ids"]) > 0:
             for i, mem_id in enumerate(results["ids"][0]):
                 distance = results["distances"][0][i]
+                # ChromaDB 余弦距离 ∈ [0, 2]，相似度 = 1 - distance，∈ [-1, 1]
+                # 值为 1 表示完全相同，0 表示正交，-1 表示完全相反
                 similarity = 1 - distance
 
                 if similarity >= min_similarity:

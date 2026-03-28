@@ -32,6 +32,7 @@ HELP_EPILOG = """
   evrmem search "React表单问题" --top-k 3
   evrmem rag "用户报告Tree报错" --top-k 5
   evrmem query --project mes-demo
+  evrmem delete <ID>
   evrmem stats
 
 环境变量:
@@ -320,6 +321,40 @@ def _list_tags():
     print()
 
 
+def cmd_delete(args):
+    """删除记忆"""
+    memory_id = args.memory_id
+
+    # 先查询确认存在
+    mem = vector_db.get_memory(memory_id)
+    if mem is None:
+        print(f"  [ERROR] 未找到 ID: {memory_id}")
+        return
+
+    content_preview = mem["content"][:80] + "..." if len(mem["content"]) > 80 else mem["content"]
+    meta = mem["metadata"]
+
+    print(f"\n  即将删除：")
+    print(f"  ID      : {memory_id}")
+    print(f"  内容    : {content_preview}")
+    if "project" in meta:
+        print(f"  项目    : {meta['project']}")
+    if "tags" in meta:
+        print(f"  标签    : {meta['tags']}")
+
+    if not args.yes:
+        confirm = input("\n  确认删除？[y/N] ").strip().lower()
+        if confirm not in ("y", "yes"):
+            print("  已取消")
+            return
+
+    ok = vector_db.delete_memory(memory_id)
+    if ok:
+        print(f"  [OK] 记忆已删除: {memory_id}")
+    else:
+        print(f"  [ERROR] 删除失败: {memory_id}")
+
+
 def cmd_stats(args):
     """统计信息"""
     print(f"\n  记忆总数: {vector_db.count}")
@@ -407,6 +442,11 @@ def build_parser() -> argparse.ArgumentParser:
     # stats
     subparsers.add_parser("stats", help="统计信息")
 
+    # delete
+    p_delete = subparsers.add_parser("delete", help="删除记忆")
+    p_delete.add_argument("memory_id", help="记忆 ID（完整或前缀均可）")
+    p_delete.add_argument("-y", "--yes", action="store_true", help="跳过确认直接删除")
+
     # init
     subparsers.add_parser("init", help="初始化/查看状态")
 
@@ -443,7 +483,12 @@ def main():
     if args.min_similarity is not None:
         config._config["rag.min_similarity"] = args.min_similarity
 
-    setup_logging(config.get("logging.level", "ERROR"))
+    # 如果 CLI 指定了模型，重置单例确保新参数生效
+    if args.model_name or args.local_model or args.device != "cpu":
+        from .core import embedding as _emb_mod
+        _emb_mod._embedding_model = None
+
+    setup_logging(config.get("logging.level", "WARNING"))
 
     # 路由
     if args.command == "add":
@@ -458,6 +503,8 @@ def main():
         cmd_query(args)
     elif args.command == "stats":
         cmd_stats(args)
+    elif args.command == "delete":
+        cmd_delete(args)
     elif args.command == "init":
         cmd_init(args)
     else:
