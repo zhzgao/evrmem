@@ -114,6 +114,8 @@ Environment variables override config file (highest priority):
 | `EVREM_DATA_DIR` | `vector_db.persist_directory` | Data directory |
 | `EVREM_TOP_K` | `rag.top_k` | Default retrieval count |
 | `EVREM_LOG_LEVEL` | `logging.level` | `DEBUG`, `INFO`, `WARNING`, `ERROR` |
+| `EVREM_LOCAL_FILES_ONLY` | - | Set to `true` to disable network access (default: `false`) |
+| `HF_ENDPOINT` | - | HuggingFace mirror endpoint (e.g., `https://hf-mirror.com` for China users) |
 
 ### CLI Reference
 

@@ -62,11 +62,14 @@ class EmbeddingModel:
             model_path = self.model_name
             print(f"  ⏳ 加载向量模型: {model_path}（首次约需 5~10 秒）...", flush=True)
 
+        # 允许通过环境变量控制是否只允许本地文件（默认允许网络下载）
+        local_files_only = os.environ.get("EVREM_LOCAL_FILES_ONLY", "false").lower() == "true"
+        
         self._model = SentenceTransformer(
             model_path,
             device=self.device,
             cache_folder=self.cache_folder,
-            local_files_only=True,
+            local_files_only=local_files_only,
         )
         self._dimension = self._model.get_sentence_embedding_dimension()
         print(f"  ✅ 模型加载完成（维度: {self._dimension}）", flush=True)
